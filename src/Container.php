@@ -92,4 +92,18 @@ class Container extends Component implements ContainerInterface
         $this->data = [];
     }
 
+    /**
+     * @param $mode
+     * @throws UndefinedModeException
+     */
+    protected function change_mode($mode)
+    {
+        if (in_array($mode, ContainerModes::MODES)){
+            $this->mode = $mode;
+        }else{
+            throw new UndefinedModeException();
+        }
+
+    }
+
 }
