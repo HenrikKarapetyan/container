@@ -24,7 +24,10 @@ class Container extends Component implements ContainerInterface
      * @var array
      */
     protected $data = [];
-
+    /**
+     * @var integer
+     */
+    private $mode;
     /**
      * @param $id
      * @return mixed
@@ -57,10 +60,14 @@ class Container extends Component implements ContainerInterface
     public function set($id, $value)
     {
         if (is_string($id)) {
-            if ($this->has($id)) {
-                throw new IdAlreadyExistsException(sprintf('"%s" id is already exists please choose another name', $id));
+            if ($this->mode == ContainerModes::SINGLE_VALUE_MODE) {
+                if ($this->has($id)) {
+                    throw new IdAlreadyExistsException(sprintf('"%s" id is already exists please choose another name', $id));
+                } else {
+                    $this->data[$id] = $value;
+                }
             } else {
-                $this->data[$id] = $value;
+                $this->data[$id][] = $value;
             }
 
         } else {
