@@ -5,7 +5,7 @@
   "minimum-stability": "dev",
   "require": {
     "psr/container": "^1.0@dev",
-    "henrik/component": "^1.*"
+    "henrik/component": "1.*"
   },
   "autoload": {
     "psr-4": {
