@@ -9,6 +9,10 @@
 namespace henrik\container;
 
 
+/**
+ * Interface ContainerInterface
+ * @package henrik\container
+ */
 interface ContainerInterface extends \Psr\Container\ContainerInterface
 {
     /**
@@ -20,7 +24,7 @@ interface ContainerInterface extends \Psr\Container\ContainerInterface
     /**
      * @param $id
      * @param $value
-     * @return mixed
+     * @return void
      */
     public function set($id, $value);
 
@@ -31,14 +35,19 @@ interface ContainerInterface extends \Psr\Container\ContainerInterface
     public function has($id);
     /**
      * @param $id
-     * @return mixed
+     * @return void
      */
     public function delete($id);
 
     /**
-     * @return mixed
+     * @return void
      */
     public function deleteAll();
+
+    /**
+     * @return array
+     */
+    public function getAll();
 
     // public function update($id, $new_value);
 }

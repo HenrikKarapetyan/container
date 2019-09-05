@@ -2,6 +2,7 @@
   "name": "henrik/container",
   "type": "library",
   "license": "MIT",
+  "description": "Container",
   "minimum-stability": "dev",
   "require": {
     "psr/container": "^1.0@dev",

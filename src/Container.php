@@ -28,10 +28,11 @@ class Container extends Component implements ContainerInterface
      * @var integer
      */
     private $mode;
+
     /**
      * @param $id
      * @return mixed
-     * @throws \Exception
+     * @throws ServiceNotFoundException
      */
     public function get($id)
     {
@@ -98,12 +99,19 @@ class Container extends Component implements ContainerInterface
      */
     protected function change_mode($mode)
     {
-        if (in_array($mode, ContainerModes::MODES)){
+        if (in_array($mode, ContainerModes::MODES)) {
             $this->mode = $mode;
-        }else{
+        } else {
             throw new UndefinedModeException();
         }
 
     }
 
+    /**
+     * @return array
+     */
+    public function getAll()
+    {
+        return $this->data;
+    }
 }
