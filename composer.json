@@ -1,7 +1,7 @@
 {
   "name": "henrik/container",
   "type": "library",
-  "license": "MIT",
+  "license": "GPL-2.0-only",
   "description": "Container",
   "minimum-stability": "dev",
   "require": {
