@@ -75,7 +75,7 @@ class Container extends Component implements ContainerInterface
 
         }
 
-        $this->data[$id][] = $value;
+        $this->data[$id][] = $value; // @phpstan-ignore-line
     }
 
     /**
