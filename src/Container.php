@@ -3,84 +3,87 @@
  * Created by PhpStorm.
  * User: Henrik
  * Date: 3/31/2018
- * Time: 10:34 AM
+ * Time: 10:34 AM.
  */
+declare(strict_types=1);
 
 namespace henrik\container;
 
-
+use henrik\component\Component;
 use henrik\container\exceptions\IdAlreadyExistsException;
 use henrik\container\exceptions\ServiceNotFoundException;
-use henrik\container\exceptions\TypeException;
-use henrik\component\Component;
+use henrik\container\exceptions\UndefinedModeException;
 
 /**
- * Class Container
- * @package henrik\container
+ * Class Container.
  */
 class Container extends Component implements ContainerInterface
 {
     /**
-     * @var array
+     * @var array<string, mixed>
      */
-    protected $data = [];
+    protected array $data = [];
     /**
-     * @var integer
+     * @var ContainerModes
      */
-    private $mode;
+    private ContainerModes $mode = ContainerModes::SINGLE_VALUE_MODE;
 
     /**
-     * @param $id
-     * @return mixed
+     * @param string $id
+     *
      * @throws ServiceNotFoundException
+     *
+     * @return mixed
      */
-    public function get($id)
+    public function get(string $id): mixed
     {
         if ($this->has($id)) {
             return $this->data[$id];
         }
-        throw new ServiceNotFoundException(sprintf('service by "%s" id not found', $id));
+
+        throw new ServiceNotFoundException($id);
     }
 
     /**
-     * @param $id
-     * @return boolean
+     * @param string $id
+     *
+     * @return bool
      */
-    public function has($id)
+    public function has(string $id): bool
     {
         return isset($this->data[$id]);
     }
 
     /**
-     * @param $id
-     * @param $value
-     * @return mixed|void
+     * @param string $id
+     * @param mixed  $value
+     *
      * @throws IdAlreadyExistsException
-     * @throws TypeException
+     *
+     * @return void
      */
-    public function set($id, $value)
+    public function set(string $id, mixed $value): void
     {
-        if (is_string($id)) {
-            if ($this->mode == ContainerModes::SINGLE_VALUE_MODE) {
-                if ($this->has($id)) {
-                    throw new IdAlreadyExistsException(sprintf('"%s" id is already exists please choose another name', $id));
-                } else {
-                    $this->data[$id] = $value;
-                }
-            } else {
-                $this->data[$id][] = $value;
+        if ($this->mode == ContainerModes::SINGLE_VALUE_MODE) {
+
+            if ($this->has($id)) {
+                throw new IdAlreadyExistsException($id);
             }
 
-        } else {
-            throw new TypeException(sprintf('id must  be type of string %s given', gettype($id)));
+            $this->data[$id] = $value;
+            return;
+
         }
+
+        $this->data[$id][] = $value;
     }
 
     /**
      * @param $id
+     *
      * @return void
      */
-    public function delete($id)
+    public function delete($id): void
     {
         unset($this->data[$id]);
     }
@@ -88,30 +91,29 @@ class Container extends Component implements ContainerInterface
     /**
      * @return void
      */
-    public function deleteAll()
+    public function deleteAll(): void
     {
         $this->data = [];
     }
 
     /**
-     * @param $mode
-     * @throws UndefinedModeException
+     * @return array<string, mixed>
      */
-    protected function change_mode($mode)
+    public function getAll(): array
     {
-        if (in_array($mode, ContainerModes::MODES)) {
-            $this->mode = $mode;
-        } else {
-            throw new UndefinedModeException();
-        }
-
+        return $this->data;
     }
 
     /**
-     * @return array
+     * @param ContainerModes $mode
+     *
+     * @throws UndefinedModeException
      */
-    public function getAll()
+    public function changeMode(ContainerModes $mode): void
     {
-        return $this->data;
+        if (!in_array($mode, ContainerModes::cases())) {
+            throw new UndefinedModeException();
+        }
+        $this->mode = $mode;
     }
 }

@@ -3,51 +3,55 @@
  * Created by PhpStorm.
  * User: Henrik
  * Date: 3/31/2018
- * Time: 1:47 PM
+ * Time: 1:47 PM.
  */
+declare(strict_types=1);
 
 namespace henrik\container;
 
-
 /**
- * Interface ContainerInterface
- * @package henrik\container
+ * Interface ContainerInterface.
  */
 interface ContainerInterface extends \Psr\Container\ContainerInterface
 {
     /**
      * @param string $id
+     *
      * @return mixed
      */
-    public function get($id);
+    public function get(string $id): mixed;
 
     /**
-     * @param $id
-     * @param $value
+     * @param string $id
+     * @param mixed  $value
+     *
      * @return void
      */
-    public function set($id, $value);
+    public function set(string $id, mixed $value): void;
 
     /**
-     * @param $id
-     * @return boolean
+     * @param string $id
+     *
+     * @return bool
      */
-    public function has($id);
+    public function has(string $id): bool;
+
     /**
-     * @param $id
+     * @param string $id
+     *
      * @return void
      */
-    public function delete($id);
+    public function delete(string $id): void;
 
     /**
      * @return void
      */
-    public function deleteAll();
+    public function deleteAll(): void;
 
     /**
-     * @return array
+     * @return array<string, mixed>
      */
-    public function getAll();
+    public function getAll(): array;
 
-    // public function update($id, $new_value);
+    public function changeMode(ContainerModes $mode): void;
 }

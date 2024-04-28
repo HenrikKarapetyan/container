@@ -1,15 +1,10 @@
 <?php
 
+declare(strict_types=1);
 
-namespace henrik\container;
-
-
-use henrik\container\exceptions\ContainerException;
+namespace henrik\container\exceptions;
 
 /**
- * Class UndefinedModeException
- * @package henrik\container
+ * Class UndefinedModeException.
  */
-class UndefinedModeException extends ContainerException
-{
-}
+class UndefinedModeException extends ContainerException {}
