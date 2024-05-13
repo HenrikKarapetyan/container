@@ -71,6 +71,7 @@ class Container extends Component implements ContainerInterface
             }
 
             $this->data[$id] = $value;
+
             return;
 
         }
