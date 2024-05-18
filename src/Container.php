@@ -7,12 +7,12 @@
  */
 declare(strict_types=1);
 
-namespace henrik\container;
+namespace Henrik\Container;
 
-use henrik\component\Component;
-use henrik\container\exceptions\IdAlreadyExistsException;
-use henrik\container\exceptions\ServiceNotFoundException;
-use henrik\container\exceptions\UndefinedModeException;
+use Henrik\Component\Component;
+use Henrik\Container\Exceptions\KeyAlreadyExistsException;
+use Henrik\Container\Exceptions\KeyNotFoundException;
+use Henrik\Container\Exceptions\UndefinedModeException;
 
 /**
  * Class Container.
@@ -31,7 +31,7 @@ class Container extends Component implements ContainerInterface
     /**
      * @param string $id
      *
-     * @throws ServiceNotFoundException
+     * @throws KeyNotFoundException
      *
      * @return mixed
      */
@@ -41,7 +41,7 @@ class Container extends Component implements ContainerInterface
             return $this->data[$id];
         }
 
-        throw new ServiceNotFoundException($id);
+        throw new KeyNotFoundException($id);
     }
 
     /**
@@ -58,7 +58,7 @@ class Container extends Component implements ContainerInterface
      * @param string $id
      * @param mixed  $value
      *
-     * @throws IdAlreadyExistsException
+     * @throws KeyAlreadyExistsException
      *
      * @return void
      */
@@ -67,7 +67,7 @@ class Container extends Component implements ContainerInterface
         if ($this->mode == ContainerModes::SINGLE_VALUE_MODE) {
 
             if ($this->has($id)) {
-                throw new IdAlreadyExistsException($id);
+                throw new KeyAlreadyExistsException($id);
             }
 
             $this->data[$id] = $value;

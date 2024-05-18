@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace henrik\container;
+namespace Henrik\Container;
 
 /**
  * Class ContainerModes.

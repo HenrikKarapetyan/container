@@ -7,11 +7,11 @@
  */
 declare(strict_types=1);
 
-namespace henrik\container\exceptions;
+namespace Henrik\Container\Exceptions;
 
 use Throwable;
 
-class IdAlreadyExistsException extends ContainerException
+class KeyAlreadyExistsException extends ContainerException
 {
     public function __construct(string $id, int $code = 0, ?Throwable $previous = null)
     {

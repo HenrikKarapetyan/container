@@ -7,11 +7,11 @@
   "require": {
     "php": ">=8.2",
     "psr/container": "^2.0.2",
-    "henrik/component": "2.*"
+    "henrik/component": "dev-master"
   },
   "autoload": {
     "psr-4": {
-      "henrik\\container\\": "./src"
+      "Henrik\\Container\\": "./src"
     }
   },
   "require-dev": {

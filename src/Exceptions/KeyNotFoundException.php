@@ -7,17 +7,17 @@
  */
 declare(strict_types=1);
 
-namespace henrik\container\exceptions;
+namespace Henrik\Container\Exceptions;
 
 use Exception;
 use Psr\Container\NotFoundExceptionInterface;
 use Throwable;
 
-class ServiceNotFoundException extends Exception implements NotFoundExceptionInterface
+class KeyNotFoundException extends Exception implements NotFoundExceptionInterface
 {
     public function __construct(string $id, int $code = 0, ?Throwable $previous = null)
     {
-        $message = sprintf('Service by this id `%s` not found', $id);
+        $message = sprintf('Item by this key `%s` not found', $id);
         parent::__construct($message, $code, $previous);
     }
 }

@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace henrik\container\exceptions;
+namespace Henrik\Container\Exceptions;
 
 use Exception;
 use Psr\Container\ContainerExceptionInterface;

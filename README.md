@@ -4,7 +4,7 @@
 
 ```php
 require "../vendor/autoload.php";
-use henrik\container\Container;use henrik\container\ContainerModes;
+use Henrik\Container\Container;use Henrik\Container\ContainerModes;
 
 $container = new Container();
 
