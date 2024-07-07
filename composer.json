@@ -4,10 +4,11 @@
   "license": "GPL-2.0-only",
   "description": "Container",
   "minimum-stability": "dev",
+  "version": "2.0.2",
   "require": {
     "php": ">=8.2",
     "psr/container": "^2.0.2",
-    "henrik/component": "dev-master"
+    "henrik/component": "^2.3"
   },
   "autoload": {
     "psr-4": {
